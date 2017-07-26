@@ -1,0 +1,11 @@
+[package]
+name = "question"
+version = "0.1.0"
+authors = ["Marco Schlumpp <marco.schlumpp@gmail.com>"]
+
+[dependencies]
+nom = {version = "^3.2", features=["verbose-errors"]}
+rand = "^0.3.15"
+linefeed = "^0.2"
+term = "^0.4.6"
+textwrap = "^0.7"
