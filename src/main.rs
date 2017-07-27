@@ -17,6 +17,8 @@ use linefeed::{Reader, ReadResult};
 
 use textwrap::fill;
 
+use std::env;
+
 #[derive(Debug, PartialEq, Eq)]
 struct Question<'s> {
     q: &'s str,
@@ -118,7 +120,12 @@ mod tests {
 fn main() {
     // Read questions
     let content = {
-        let mut file = File::open("../Multiple-Choice.txt").expect("cannot open question file");
+        if env::args().len() != 2 {
+            panic!("Expected invocation: question <questions.txt>");
+        }
+        let filename = env::args().nth(1).unwrap();
+
+        let mut file = File::open(filename).expect("cannot open question file");
         let mut content = String::new();
         file.read_to_string(&mut content).expect("cannot read question file");
         content
